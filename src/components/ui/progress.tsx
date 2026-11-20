@@ -1,0 +1,28 @@
+import { cn } from "@/lib/utils";
+
+/** Lightweight progress bar (no dependency — the app stays lean). */
+export function Progress({
+  value,
+  className,
+  barClassName,
+}: {
+  value: number;
+  className?: string;
+  barClassName?: string;
+}) {
+  const pct = Math.min(100, Math.max(0, value));
+  return (
+    <div
+      role="progressbar"
+      aria-valuenow={pct}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      className={cn("h-2 w-full overflow-hidden rounded-full bg-muted", className)}
+    >
+      <div
+        className={cn("h-full rounded-full grad-primary transition-[width] duration-300 ease-out", barClassName)}
+        style={{ width: `${pct}%` }}
+      />
+    </div>
+  );
+}

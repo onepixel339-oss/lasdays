@@ -1,0 +1,512 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ═══════════════ دفتر آخر النهار — End-of-Day Study Journal ═══════════════
+   Warm paper in daylight, calm ink at night. Amber is the deliberate accent
+   for the study action and session completion; purple is reserved for review
+   (SRS) only. Hairline borders, flat opaque surfaces, one quiet shadow for
+   floating layers. Spacing on a 4/8/12/16/24/32/48/64 grid. Motion is 120–260ms
+   and explains state only — `prefers-reduced-motion` turns it off.
+   No glass, no gradients, no glow, no confetti.                            */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-app-body), "IBM Plex Sans Arabic", "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-app-body), "IBM Plex Sans Arabic", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-review: var(--review);
+  --color-review-foreground: var(--review-foreground);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+:root {
+  --radius: 1rem;
+
+  /* ── dark (default) · night ink ── */
+  --background: #111316;
+  --foreground: #f1f0ea;
+  --card: #191c20;
+  --card-foreground: #f1f0ea;
+  --popover: #20242a;
+  --popover-foreground: #f1f0ea;
+
+  /* amber — the study action (ink text on amber keeps 8:1 contrast) */
+  --primary: #e3a45e;
+  --primary-foreground: #201509;
+  --secondary: #20242a;
+  --secondary-foreground: #e6e4dd;
+  --muted: #20242a;
+  --muted-foreground: #b0b5b0;
+  --accent: #242930;
+  --accent-foreground: #f1f0ea;
+
+  /* completed-session green — quiet, never decorative */
+  --success: #82b9a2;
+  --success-foreground: #10201a;
+  --destructive: #e26d5c;
+  --destructive-foreground: #240f0a;
+  --warning: #e0b45c;
+  --warning-foreground: #241a05;
+
+  /* review-only purple — SRS surfaces and review actions, nothing else */
+  --review: #a99be8;
+  --review-foreground: #16112b;
+
+  --border: #30363c;
+  --input: #3a4046;
+  --ring: #e3a45e;
+
+  --chart-1: #e3a45e;
+  --chart-2: #82b9a2;
+  --chart-3: #8fa7bc;
+  --chart-4: #d9c08a;
+  --chart-5: #c98ba0;
+
+  --sidebar: #141719;
+  --sidebar-foreground: #f1f0ea;
+  --sidebar-primary: #e3a45e;
+  --sidebar-primary-foreground: #201509;
+  --sidebar-accent: #20242a;
+  --sidebar-accent-foreground: #f1f0ea;
+  --sidebar-border: #2c3137;
+  --sidebar-ring: #e3a45e;
+
+  /* elevation — ONE shadow for floating surfaces; cards stay flat */
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.25);
+  --shadow-pop: 0 12px 32px -12px rgb(0 0 0 / 0.55);
+  --hero-glow: #e3a45e;
+}
+
+.dark {
+  /* explicit dark (same as default — provider toggles the class) */
+}
+
+/* ── light · warm end-of-day paper ── */
+:root:not(.dark) {
+  --background: #f5f2ea;
+  --foreground: #202624;
+  --card: #fffefa;
+  --card-foreground: #202624;
+  --popover: #fffefa;
+  --popover-foreground: #202624;
+
+  --primary: #a84f2b;
+  --primary-foreground: #fffdf9;
+  --secondary: #eeeae1;
+  --secondary-foreground: #2a302d;
+  --muted: #eeeae1;
+  --muted-foreground: #606963;
+  --accent: #eae5d9;
+  --accent-foreground: #202624;
+
+  --success: #34685a;
+  --success-foreground: #fffdf9;
+  --destructive: #b3413b;
+  --destructive-foreground: #fffdf9;
+  --warning: #8a5e10;
+  --warning-foreground: #fffdf9;
+
+  --review: #6657a7;
+  --review-foreground: #fffdf9;
+
+  --border: #dcd7cb;
+  --input: #c9c3b4;
+  --ring: #a84f2b;
+
+  --chart-1: #a84f2b;
+  --chart-2: #34685a;
+  --chart-3: #4a5d74;
+  --chart-4: #a3823c;
+  --chart-5: #7c3e52;
+
+  --sidebar: #efece2;
+  --sidebar-foreground: #202624;
+  --sidebar-primary: #a84f2b;
+  --sidebar-primary-foreground: #fffdf9;
+  --sidebar-accent: #e7e2d5;
+  --sidebar-accent-foreground: #202624;
+  --sidebar-border: #d8d2c4;
+  --sidebar-ring: #a84f2b;
+
+  --shadow-soft: 0 1px 2px rgb(32 38 36 / 0.06);
+  --shadow-pop: 0 12px 32px -12px rgb(32 38 36 / 0.24);
+  --hero-glow: #a84f2b;
+}
+
+/* ── accent switching (html[data-accent]) — warm journal hues.
+     Amber is the identity default; alternatives stay muted and calm so the
+     "quiet study journal" voice survives every choice. Solid, single hue. ── */
+[data-accent="amber"] {
+  --primary: #a84f2b;
+  --ring: #a84f2b;
+  --sidebar-primary: #a84f2b;
+  --chart-1: #a84f2b;
+  --hero-glow: #a84f2b;
+}
+:root:not(.dark)[data-accent="amber"] {
+  --primary: #a84f2b;
+  --primary-foreground: #fffdf9;
+}
+.dark[data-accent="amber"] {
+  --primary: #e3a45e;
+  --primary-foreground: #201509;
+  --ring: #e3a45e;
+  --sidebar-primary: #e3a45e;
+  --chart-1: #e3a45e;
+  --hero-glow: #e3a45e;
+}
+
+[data-accent="moss"] {
+  --ring: var(--primary);
+  --sidebar-primary: var(--primary);
+  --chart-1: var(--primary);
+  --hero-glow: var(--primary);
+}
+:root:not(.dark)[data-accent="moss"] {
+  --primary: #3d6b54;
+  --primary-foreground: #fffdf9;
+}
+.dark[data-accent="moss"] {
+  --primary: #8fc0a9;
+  --primary-foreground: #0f2018;
+}
+
+[data-accent="clay"] {
+  --ring: var(--primary);
+  --sidebar-primary: var(--primary);
+  --chart-1: var(--primary);
+  --hero-glow: var(--primary);
+}
+:root:not(.dark)[data-accent="clay"] {
+  --primary: #7a5230;
+  --primary-foreground: #fffdf9;
+}
+.dark[data-accent="clay"] {
+  --primary: #c99b6a;
+  --primary-foreground: #1d1206;
+}
+
+[data-accent="dusk"] {
+  --ring: var(--primary);
+  --sidebar-primary: var(--primary);
+  --chart-1: var(--primary);
+  --hero-glow: var(--primary);
+}
+:root:not(.dark)[data-accent="dusk"] {
+  --primary: #44586e;
+  --primary-foreground: #fffdf9;
+}
+.dark[data-accent="dusk"] {
+  --primary: #9db4c9;
+  --primary-foreground: #101820;
+}
+
+[data-accent="wine"] {
+  --ring: var(--primary);
+  --sidebar-primary: var(--primary);
+  --chart-1: var(--primary);
+  --hero-glow: var(--primary);
+}
+:root:not(.dark)[data-accent="wine"] {
+  --primary: #7c3e52;
+  --primary-foreground: #fffdf9;
+}
+.dark[data-accent="wine"] {
+  --primary: #cf94a8;
+  --primary-foreground: #200a12;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+    color-scheme: dark;
+  }
+  :root:not(.dark) {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    /* Arabic-first comfortable reading — journal line height */
+    line-height: 1.75;
+    overscroll-behavior-y: none;
+    min-height: 100dvh;
+  }
+  :lang(en) body,
+  html[lang="en"] body {
+    line-height: 1.6;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--foreground) 20%, transparent);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  button {
+    cursor: pointer;
+  }
+  /* keyboard focus — visible, calm ring */
+  :focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--primary) 65%, transparent);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* headings share the body family — the journal voice is one typeface with
+     weight contrast, not a second display font */
+  .font-display {
+    font-family: var(--font-app-body), "IBM Plex Sans Arabic", sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* card — opaque surface + hairline (no blur, no glass, no gradient) */
+  .card-soft {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-pop {
+    box-shadow: var(--shadow-pop);
+  }
+
+  /* bars & sheets — opaque with hairline */
+  .glass {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-pop);
+  }
+
+  /* the single decorative allowance: a static, near-invisible accent wash
+     at the top of hero surfaces (3–4% opacity — depth, not decoration) */
+  .hero-glow {
+    background: radial-gradient(70% 50% at 50% 0%, color-mix(in srgb, var(--hero-glow) 4%, transparent) 0%, transparent 100%);
+  }
+
+  /* brand helpers — SOLID accent (names kept for compatibility) */
+  .grad-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+  .grad-text {
+    color: var(--primary);
+  }
+  .grad-ring {
+    position: relative;
+  }
+  .grad-ring::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid color-mix(in srgb, var(--primary) 45%, transparent);
+    pointer-events: none;
+  }
+
+  /* the journal margin-line: a quiet accent rule at the start of a section,
+     like the red margin of a notebook page */
+  .journal-rule {
+    position: relative;
+  }
+  .journal-rule::before {
+    content: "";
+    position: absolute;
+    inset-block: 0.9rem;
+    inset-inline-start: 0;
+    width: 2px;
+    border-radius: 2px;
+    background: color-mix(in srgb, var(--primary) 55%, transparent);
+  }
+
+  /* entrance — one quick, quiet fade-up per route */
+  .rise {
+    animation: rise-in 0.24s cubic-bezier(0.2, 0, 0, 1) both;
+  }
+  .rise-late {
+    animation: rise-in 0.24s cubic-bezier(0.2, 0, 0, 1) 0.06s both;
+  }
+
+  /* a new row settles in (list insertions — 180ms, no layout jump) */
+  .row-in {
+    animation: row-in 0.18s ease-out both;
+  }
+
+  /* completion — one small checkmark beat (200ms), then rest */
+  .check-pop {
+    animation: check-pop 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* session state swap (start/pause/done) — text fades, layout stays */
+  .swap-in {
+    animation: swap-in 0.2s ease-out both;
+  }
+
+  /* live-audio state — breathing opacity (no glow filters) */
+  .glow-ring {
+    opacity: 1;
+  }
+  .glow-pulse {
+    animation: breathe 2.8s ease-in-out infinite;
+  }
+
+  /* paper texture — retired (kept as no-op for compatibility) */
+  .paper {
+    background-image: none;
+  }
+
+  /* safe-area helpers for mobile shell */
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom), 0.5rem);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .tap {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* tabular numerals for all data — timers, dates, counts */
+  .num-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* live audio equalizer bars (quran player — functional state) */
+  .eq {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 18px;
+  }
+  .eq i {
+    width: 3px;
+    border-radius: 2px;
+    background: currentColor;
+    transform-origin: bottom;
+    animation: eq-bounce 1.05s ease-in-out infinite;
+  }
+  .eq i:nth-child(1) { height: 55%; animation-delay: 0s; }
+  .eq i:nth-child(2) { height: 100%; animation-delay: 0.18s; }
+  .eq i:nth-child(3) { height: 70%; animation-delay: 0.36s; }
+  .eq i:nth-child(4) { height: 95%; animation-delay: 0.09s; }
+  .eq i:nth-child(5) { height: 45%; animation-delay: 0.27s; }
+  .eq.eq-slow i {
+    animation-duration: 1.7s;
+  }
+
+  /* static top tint — replaces the animated aurora backdrop */
+  .app-tint {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    background: radial-gradient(90% 30% at 50% -6%, color-mix(in srgb, var(--hero-glow) 3%, transparent) 0%, transparent 100%);
+  }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes row-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes check-pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes swap-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.82; }
+  50% { opacity: 1; }
+}
+@keyframes eq-bounce {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+/* ── reduced motion: state is always understandable without movement ── */
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .rise-late,
+  .row-in,
+  .check-pop,
+  .swap-in,
+  .glow-pulse {
+    animation: none;
+  }
+  .eq i {
+    animation: none;
+    transform: scaleY(0.6);
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
